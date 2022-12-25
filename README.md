@@ -36,6 +36,7 @@ https://dart.dev/overview
 ### Variables
 
 - [x] var
+
   ```dart
   void main() {
     var name = 'jw';
@@ -45,6 +46,7 @@ https://dart.dev/overview
     // class에서 변수나 property를 선언할 때는 타입을 지정해준다.
   }
   ```
+
 - [x] dynamic
   ```dart
   void main() {
@@ -58,6 +60,7 @@ https://dart.dev/overview
   }
   ```
 - [x] null safety
+
   ```dart
   void main() {
     // null safety는 개발자가 null 값을 참조할 수 없게 하는 것
@@ -75,6 +78,7 @@ https://dart.dev/overview
     name?.isNotEmpty;
   }
   ```
+
 - [x] final
   ```dart
   void main() {
@@ -83,6 +87,7 @@ https://dart.dev/overview
   }
   ```
 - [x] late
+
   ```dart
   void main() {
     // late는 final 혹은 var 앞에 붙이는 수식어
@@ -96,10 +101,81 @@ https://dart.dev/overview
     name = 'nico';
   }
   ```
+
 - [x] const
+
   ```dart
   // const는 compoile-time constant를 만들어 준다.
   // const와 fianl의 가장 큰 차이점은 컴파일이 되는 시점에 그 값을 알 수 있는지 없는지의 차이다.
 
   // 예를 들어 fetchApi를 하는 변수는 컴파일하는 시점에 그 변수를 알 수가 없다.
+  ```
+
+Recap
+
+```
+final: 값을 재할당하지 못하는 변수를 만듦
+dynamic type: 어떤 타입의 데이터가 들어올 지 모를 때 사용함
+const: 컴파일 할 때 값을 알고 있는 변수
+final: 런타임 중에 만들어질 수 있는 변수
+late: final, var, String같은 것들 앞에 써줄 수 있는 수식어로서 어떤 데이터가 올 지 모를 때 사용한다.
+```
+
+---
+
+### Built-in types
+
+- [x] Basic type
+  ```dart
+  void main() {
+    // 아래 타입을 포함한 거의 대부분의 타입들이 객체로 이루어져 있다. (함수도 객체)
+    String name = 'nico';
+    bool alive = true;
+    int age = 12;
+    double money = 13.56;
+  }
+  ```
+- [x] List
+  ```dart
+  void main() {
+    var numbers = [1, 2, 3, 4, 5, 6, 7];
+    List<int> numbers_2 = [1, 2, 3, 4, 5, 6, 7];
+    numbers_2.add(13);
+
+    // collection if
+    var giveNumber = true;
+    var numbers_3 = [
+      1,
+      2,
+      3,
+      if (giveNumber) 4,
+    ];
+
+    //  collection for
+    var newNumber = [for (var num in numbers) '✅ $num'];
+    print(newNumber);
+  }
+  ```
+- [x] Map
+  ```dart
+  void main() {
+    var gifts = {
+      // Key: Value
+      'first': 'partridge',
+      'second': 'turtledoves',
+      'fifth': 'golden rings'
+    };
+    // Map 생성자를 사용하여 동일한 객체를 만들 수 있습니다.
+    var gifts2 = Map();
+    gifts2['first'] = 'partridge';
+    gifts2['second'] = 'turtledoves';
+    gifts2['fifth'] = 'golden rings';
+  }
+  ```
+- [x] Set
+  ```dart
+  void main() {
+    // sets => items are always unique
+    // lists => items are not always unique
+  }
   ```
