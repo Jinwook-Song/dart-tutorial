@@ -136,6 +136,7 @@ late: final, var, String같은 것들 앞에 써줄 수 있는 수식어로서 �
   }
   ```
 - [x] List
+
   ```dart
   void main() {
     var numbers = [1, 2, 3, 4, 5, 6, 7];
@@ -156,6 +157,7 @@ late: final, var, String같은 것들 앞에 써줄 수 있는 수식어로서 �
     print(newNumber);
   }
   ```
+
 - [x] Map
   ```dart
   void main() {
@@ -177,5 +179,78 @@ late: final, var, String같은 것들 앞에 써줄 수 있는 수식어로서 �
   void main() {
     // sets => items are always unique
     // lists => items are not always unique
+  }
+  ```
+
+---
+
+### Functions
+
+- [x] Define
+  ```dart
+  void main() {
+    plus(13, 22);
+    sayHello('jw');
+  }
+
+  num plus(num a, num b) => a + b;
+
+  String sayHello(String name) {
+    return 'hello $name';
+  }
+  ```
+- [x] named parameter
+  ```dart
+  void main() {
+    print(sayHello(
+      name: "jw",
+      age: 10,
+    ));
+  }
+
+  String sayHello({
+    required String name,
+    required int age,
+    String country = "Korea",
+  }) {
+    return "${name} / ${age} / ${country}";
+  }
+  ```
+- [x] optional positional parameter
+  ```dart
+  void main() {
+    print(sayHello(
+      "jw",
+      10,
+    ));
+  }
+
+  String sayHello(String name, int age, [String? country]) {
+    return 'Hello ${name}, You are ${age} from the ${country}';
+  }
+  ```
+- [x] QQ operator
+  ```dart
+  void main() {
+    print(capitalizeName('jw'));
+
+    String? name;
+    name ??= 'nico';
+    print(name);
+  }
+
+  String capitalizeName(String? name) => name?.toUpperCase() ?? "";
+  ```
+- [x] typedef
+  ```dart
+  void main() {
+    print(reverseList([1, 2, 3, 4]));
+  }
+
+  typedef ListOfInts = List<int>;
+
+  ListOfInts reverseList(ListOfInts list) {
+    var reversed = list.reversed;
+    return reversed.toList();
   }
   ```
