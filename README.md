@@ -187,6 +187,7 @@ late: final, var, String같은 것들 앞에 써줄 수 있는 수식어로서 �
 ### Functions
 
 - [x] Define
+
   ```dart
   void main() {
     plus(13, 22);
@@ -199,7 +200,9 @@ late: final, var, String같은 것들 앞에 써줄 수 있는 수식어로서 �
     return 'hello $name';
   }
   ```
+
 - [x] named parameter
+
   ```dart
   void main() {
     print(sayHello(
@@ -216,7 +219,9 @@ late: final, var, String같은 것들 앞에 써줄 수 있는 수식어로서 �
     return "${name} / ${age} / ${country}";
   }
   ```
+
 - [x] optional positional parameter
+
   ```dart
   void main() {
     print(sayHello(
@@ -229,7 +234,9 @@ late: final, var, String같은 것들 앞에 써줄 수 있는 수식어로서 �
     return 'Hello ${name}, You are ${age} from the ${country}';
   }
   ```
+
 - [x] QQ operator
+
   ```dart
   void main() {
     print(capitalizeName('jw'));
@@ -241,7 +248,9 @@ late: final, var, String같은 것들 앞에 써줄 수 있는 수식어로서 �
 
   String capitalizeName(String? name) => name?.toUpperCase() ?? "";
   ```
+
 - [x] typedef
+
   ```dart
   void main() {
     print(reverseList([1, 2, 3, 4]));
@@ -252,5 +261,296 @@ late: final, var, String같은 것들 앞에 써줄 수 있는 수식어로서 �
   ListOfInts reverseList(ListOfInts list) {
     var reversed = list.reversed;
     return reversed.toList();
+  }
+  ```
+
+---
+
+### Classes
+
+- [x] dart class
+  ```dart
+  class Player {
+    String name = 'jw';
+    int xp = 1500;
+
+    void sayHello() {
+      print('hi $name');
+    }
+  }
+
+  void main() {
+    var player = Player();
+    print(player.name);
+    player.name = 'nico';
+    print(player.name);
+    player.sayHello();
+  }
+  ```
+- [x] Constructor
+  ```dart
+  class Player {
+    late final String name;
+    late int xp;
+
+    Player(String name, int xp) {
+      this.name = name;
+      this.xp = xp;
+    }
+
+    void sayHello() {
+      print('hi $name');
+    }
+  }
+
+  class Player2 {
+    final String name;
+    int xp;
+
+    Player2(this.name, this.xp);
+  }
+
+  void main() {
+    var player = Player('dart', 100);
+    var player2 = Player2('jw', 200);
+  }
+  ```
+- [x] named constructor parameters
+  ```dart
+  class Player {
+    final String name;
+    int xp;
+    String team;
+    int age;
+
+    Player({
+      required this.name,
+      required this.xp,
+      required this.team,
+      required this.age,
+    });
+  }
+
+  void main() {
+    var player = Player(
+      name: 'dart',
+      team: 'red',
+      xp: 100,
+      age: 20,
+    );
+  }
+  ```
+- [x] named constructor
+  ```dart
+  class Player {
+    final String name;
+    int xp, age;
+    String team;
+
+    Player({
+      required this.name,
+      required this.xp,
+      required this.team,
+      required this.age,
+    });
+
+    Player.createBluePlayer({
+      required String name,
+      required int age,
+    })  : this.name = name,
+          this.age = age,
+          this.team = 'blue',
+          this.xp = 0;
+
+    Player.createRedPlayer(
+      String name,
+      int age,
+    )   : this.name = name,
+          this.age = age,
+          this.team = 'red',
+          this.xp = 0;
+  }
+
+  void main() {
+    var player = Player.createBluePlayer(
+      name: 'dart',
+      age: 20,
+    );
+
+    var player2 = Player.createRedPlayer(
+      'jw',
+      30,
+    );
+  }
+  ```
+  - [x] fromJson
+    ```dart
+    class Player {
+      final String name;
+      int xp;
+      String team;
+
+      Player.fromJson(Map<String, dynamic> playerJson)
+          : name = playerJson["name"],
+            team = playerJson["team"],
+            xp = playerJson["xp"];
+    }
+
+    void main() {
+      var apiData = [
+        {
+          "name": "nico",
+          "team": "blue",
+          "xp": 0,
+        },
+        {
+          "name": "jw",
+          "team": "red",
+          "xp": 0,
+        },
+      ];
+
+      List<Player> players = [];
+      for (var data in apiData) {
+        players.add(Player.fromJson(data));
+      }
+
+      print(players[1].name);
+    }
+    ```
+- [x] cascade notation
+  ```dart
+  class Player {
+    String name;
+    int xp;
+    String team;
+
+    Player({
+      required this.name,
+      required this.xp,
+      required this.team,
+    });
+  }
+
+  void main() {
+    var jw = Player(name: 'jw', xp: 10, team: 'red');
+    jw.name = 'dart';
+    jw.xp = 2000;
+    jw.team = 'blue';
+
+    var flutter = Player(name: 'flutter', xp: 10, team: 'red')
+    var potato = flutter
+      ..name = 'dart'
+      ..xp = 2000
+      ..team = 'blue';
+  }
+  ```
+- [x] enum
+  ```dart
+  enum Team { red, blue }
+  ```
+- [x] abstract class
+  ```dart
+  abstract class Human {
+    // only signatures
+    void walk();
+
+  }
+
+  abstract class MyColors {
+    static int RED = 0xFFDDEEAA;
+  }
+
+  enum Team { red, blue }
+
+  class Player extends Human {
+    String name;
+    int xp;
+    Team team;
+
+    Player({
+      required this.name,
+      required this.xp,
+      required this.team,
+    });
+
+    @override
+    void walk() {
+      // TODO: implement walk
+      print('walk~');
+    }
+    // MyColors.Red
+  }
+  ```
+- [x] inheritance
+  ```dart
+  class Human {
+    final String name;
+    Human(this.name);
+    void sayHello() {
+      print('hello $name');
+    }
+  }
+
+  enum Team { blue, red }
+
+  class Player extends Human {
+    final Team team;
+
+    // 상속을 하고 super를 이용해 부모 클래스의 생성자를 호출
+  	// send the name to the Human class
+    Player({
+      required this.team,
+      required String name,
+    }) : super(name);
+
+    @override
+    void sayHello() {
+      // TODO: implement sayHello
+      super.sayHello();
+      print('my team is $team');
+    }
+  }
+
+  void main() {
+    var player = Player(
+      team: Team.red,
+      name: 'jw',
+    );
+
+    player.sayHello();
+
+    print(player.name);
+  }
+  ```
+- [x] mixins
+  ```dart
+  class Strong {
+    final double strength_level = 2222.987;
+  }
+
+  class QuickRunner {
+    void runQuick() {
+      print('run~!');
+    }
+  }
+
+  enum Team { blue, red }
+
+  class Player with Strong, QuickRunner {
+    // Mixins (without constructor)
+    final Team team;
+
+    Player({
+      required this.team,
+    });
+  }
+
+  void main() {
+    var player = Player(
+      team: Team.red,
+    );
+
+    player.runQuick();
   }
   ```
